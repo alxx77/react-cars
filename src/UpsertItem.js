@@ -184,7 +184,6 @@ function UpsertItem() {
       let resized_image = canvas.toDataURL("image/jpeg", 1);
 
       //postavi preview
-      //document.getElementById("img_prev_" + group_uuid).src = resized_image;
 
       //podela dataURL na delove
       let block = resized_image.split(";");
