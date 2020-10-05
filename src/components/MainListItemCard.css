@@ -1,0 +1,42 @@
+.post {
+  position: relative;
+  display: flex;
+  color: white;
+  background-color: white;
+  margin: 0.5rem 4rem;
+  padding: 0.5rem;
+  border: 1px solid lightgray;
+  border-radius: 1rem;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: black;
+  margin: 0;
+}
+
+.upper-left {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  color: black;
+  margin: 0;
+}
+
+.item_photo {
+  border-radius: 0.5rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.edit_btn {
+  display: flex;
+  margin-left: 0.5rem;
+  align-items: baseline;
+}
+
+.edit_link {
+  font-size: 2rem;
+}

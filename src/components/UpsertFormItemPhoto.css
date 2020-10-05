@@ -1,0 +1,31 @@
+.edit_item_card {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  grid-template-rows: auto;
+  margin: 0.5rem;
+}
+
+.trash_link_container {
+  display: flex;
+  margin-left: 0.5rem;
+  align-items: center;
+}
+
+.photo {
+  display: block;
+  margin-left: auto;
+  border-radius: 6px;
+  max-width: 60%;
+  min-width: 40%;
+  height: auto;
+}
+
+.trash_link {
+  font-size: 1.5rem;
+}
+
+i {color: gray;}   
+
+i:hover{
+    cursor: pointer;
+}

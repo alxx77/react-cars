@@ -1,0 +1,78 @@
+.edit_item_container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  max-width: 800px;
+  border: 5px solid lightgray;
+  border-radius: 1rem;
+  font-family: Tahoma;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  color: navy;
+}
+
+.form_element {
+  display: grid;
+  grid-template-columns: 200px 250px;
+  margin: 0rem 8rem;
+  align-items: center;
+  
+
+}
+
+.label_form_element {
+  text-align: right;
+  margin-right: 0.5rem;
+  font-family: Tahoma;
+  font-size: 1rem;
+}
+
+.form_images {
+  margin-top: 1rem;
+}
+
+.img_load_element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.form_submit_element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.submit_btn{
+  border-radius: 5px;
+}
+
+input, select,textarea {
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+
+  }
+
+  input[type="file"] {
+    display: none;
+}
+
+.upload_file {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
