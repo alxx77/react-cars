@@ -82,12 +82,13 @@ app.post("/api/write_item/:id_pon", (req, res, next) => {
 });
 
 //signin
-app.post("/api/signin", passport.authenticate("local"), (req, res) => {
+app.post("/api/signin", passport.authenticate("local"),async (req, res) => {
   if (req.user) {
     res.send({
       success: true,
       username: req.user.username,
       user_type: req.user.user_type,
+      user_id:req.user.user_id
     });
   } else {
     res.send({ success: false });

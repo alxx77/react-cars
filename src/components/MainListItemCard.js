@@ -8,12 +8,12 @@ function MainListItemCard({ id_pon }) {
   const [ponuda_slika, setPonuda_slika] = useState("");
   const [ponuda_data, setPonuda_data] = useState({});
 
-  const [state, setState] = useState(store.getState());
+  const [user,setUser] = useState(store.getState().user);
 
   //postavi update stanja sa stora
   useEffect(() => {
     const unsubscribe = store.subscribe(() => {
-      setState(store.getState());
+      setUser(store.getState().user);
     });
     return () => {
       unsubscribe();
@@ -72,7 +72,7 @@ function MainListItemCard({ id_pon }) {
         />
         <p className="bottom-left">{GetImageText()} </p>
       </div>
-      {state.user_type === 2 ? (
+      {user.user_type === 2 ? (
         <div className="edit_btn">
           <Link to={"/edit_item/" + id_pon}>
             <i className="far fa-edit edit_link"></i>

@@ -18,11 +18,11 @@ export function signInUser(data) {
   };
 }
 
-export function signOutUser(data) {
+export function signOutUser() {
   return {
     type: actions.SIGN_OUT_USER,
     payload: {
-      data,
+
     },
   };
 }

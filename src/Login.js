@@ -21,6 +21,7 @@ function Login() {
     );
 
     user = user.data;
+
     store.dispatch(signInUser(user));
     history.push("/");
   };

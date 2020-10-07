@@ -4,14 +4,12 @@ import * as actions from "./action_types";
 function reducer(
   state = {
     data: [],
-    offset: 0,
-    numberPerPage: 4,
-    pageCount: 0,
-    currentData: [],
-    username: null,
-    email: null,
-    user_id: null,
-    user_type: null,
+    user: {
+      username: null,
+      email: null,
+      user_id: null,
+      user_type: null,
+    },
   },
   action
 ) {
@@ -19,16 +17,16 @@ function reducer(
     case actions.SET_DATA:
       return { ...state, data: action.payload.data };
     case actions.SIGN_IN_USER:
-      const new_state = { ...state, ...action.payload.data };
-
-      return new_state;
+      return { ...state, user: { ...action.payload.data } };
     case actions.SIGN_OUT_USER:
       return {
         ...state,
-        username: null,
-        email: null,
-        user_id: null,
-        user_type: null,
+        user: {
+          username: null,
+          email: null,
+          user_id: null,
+          user_type: null,
+        },
       };
 
     default:

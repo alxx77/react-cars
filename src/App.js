@@ -5,11 +5,14 @@ import Main from "./components/Main";
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Login from "./Login";
 import UpsertItem from "./UpsertItem";
-import { setData } from "./components/actions";
+import { setData} from "./components/actions";
 import axios from "axios";
 import store from "./components/Store";
 
 function App() {
+
+  
+
   useEffect(() => {
     (async () => {
       const result = await axios("http://localhost:3003/api/get_all_items");
@@ -26,11 +29,10 @@ function App() {
             <Header />
             <Main />
           </Route>
-          <Route path="/login">
+          <Route path="/signin">
             <Login />
           </Route>
           <Route path="/settings">
-            <Login />
           </Route>
           <Route
             exact

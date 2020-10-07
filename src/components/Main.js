@@ -6,28 +6,36 @@ import store from "./Store";
 import { Link } from "react-router-dom";
 
 function Main() {
-  const [state, setState] = useState(store.getState());
 
-  //postavi update stanja sa stora
-  useEffect(() => {
-    const unsubscribe = store.subscribe(() => {
-      setState(store.getState());
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+  const [state, setState] = useState({
+    offset: 0,
+    numberPerPage: 4,
+    pageCount: 0,
+    currentData: [],
+  });
+
+  const [items,setItems] = useState(store.getState().data);
+  const [user,setUser] = useState(store.getState().user);
+
+    //postavi update stanja sa stora
+    useEffect(() => {
+      const unsubscribe = store.subscribe(() => {
+        setItems(store.getState().data);
+        setUser(store.getState().user);
+        
+      });
+      return () => {
+        unsubscribe();
+      };
+    }, []);
 
   useEffect(() => {
     setState((prev) => ({
       ...prev,
-      pageCount: prev.data.length / prev.numberPerPage,
-      currentData: prev.data.slice(
-        prev.offset,
-        prev.offset + prev.numberPerPage
-      ),
+      pageCount: items.length / prev.numberPerPage,
+      currentData: items.slice(prev.offset, prev.offset + prev.numberPerPage),
     }));
-  }, [state.numberPerPage, state.offset, state.data]);
+  }, [state.numberPerPage, state.offset, items]);
 
   //handler promena stranice
   const handlePageClick = (event) => {
@@ -35,6 +43,8 @@ function Main() {
     const offset = selected * state.numberPerPage;
     setState({ ...state, offset });
   };
+
+  //console.log("state: ",state,"items:",items)
 
   return (
     <>
@@ -50,7 +60,7 @@ function Main() {
         activeClassName={"active"}
       />
 
-      {state.user_type === 2 ? (
+      {user.user_type === 2 ? (
         <div className="insert_div">
           <Link to="/insert_item/-1">
             <i className="material-icons insert_btn">&#xe89c;</i>
