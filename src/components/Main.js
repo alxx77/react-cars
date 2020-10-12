@@ -6,7 +6,6 @@ import store from "./Store";
 import { Link } from "react-router-dom";
 
 function Main() {
-
   const [state, setState] = useState({
     offset: 0,
     numberPerPage: 4,
@@ -14,20 +13,19 @@ function Main() {
     currentData: [],
   });
 
-  const [items,setItems] = useState(store.getState().data);
-  const [user,setUser] = useState(store.getState().user);
+  const [items, setItems] = useState(store.getState().data);
+  const [user, setUser] = useState(store.getState().user);
 
-    //postavi update stanja sa stora
-    useEffect(() => {
-      const unsubscribe = store.subscribe(() => {
-        setItems(store.getState().data);
-        setUser(store.getState().user);
-        
-      });
-      return () => {
-        unsubscribe();
-      };
-    }, []);
+  //postavi update stanja sa stora
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      setItems(store.getState().data);
+      setUser(store.getState().user);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     setState((prev) => ({
@@ -61,16 +59,20 @@ function Main() {
       />
 
       {user.user_type === 2 ? (
-        <div className="insert_div">
-          <Link to="/insert_item/-1">
-            <i className="material-icons insert_btn">&#xe89c;</i>
-          </Link>
+        <div className="main_container_header">
+          <div className="main_container_header_item">
+            <div className="insert_link">
+            <Link to="/insert_item/-1">
+            <button className="insert_button"><i class="material-icons">add</i></button>
+            </Link>
+            </div>
+          </div>
         </div>
       ) : (
         ""
       )}
 
-      <div className="container">
+      <div className="main_container">
         {state.currentData &&
           state.currentData.map((item, index) => (
             <MainListItemCard

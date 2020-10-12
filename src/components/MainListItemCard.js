@@ -3,9 +3,10 @@ import "./MainListItemCard.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import store from "./Store";
+import {dummy_img} from "./dummy_img";
 
 function MainListItemCard({ id_pon }) {
-  const [ponuda_slika, setPonuda_slika] = useState("");
+  const [ponuda_slika, setPonuda_slika] = useState(dummy_img);
   const [ponuda_data, setPonuda_data] = useState({});
 
   const [user,setUser] = useState(store.getState().user);
@@ -62,7 +63,7 @@ function MainListItemCard({ id_pon }) {
   }
 
   return (
-    <div className="post">
+    <div className="main_list_item">
       <div className="photo_container">
         <p className="upper-left">Broj oglasa: {ponuda_data.brpon}</p>
         <img
