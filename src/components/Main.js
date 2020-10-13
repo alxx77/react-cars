@@ -63,7 +63,7 @@ function Main() {
           <div className="main_container_header_item">
             <div className="insert_link">
             <Link to="/insert_item/-1">
-            <button className="insert_button"><i class="material-icons">add</i></button>
+            <button className="insert_button"><i className="material-icons">add</i></button>
             </Link>
             </div>
           </div>

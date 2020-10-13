@@ -25,7 +25,7 @@ function MainListItemCard({ id_pon }) {
     const fn = async () => {
       //podaci o ponudi
       const rows = await axios(
-        "http://localhost:3003/api/get_item_by_id/" + id_pon.toString()
+        "http://localhost:3003/api/get_item_by_id/" + id_pon.toString(),{withCredentials:true}
       );
 
       if (
@@ -37,7 +37,7 @@ function MainListItemCard({ id_pon }) {
 
       //učitaj sliku
       let slika = await axios(
-        "http://localhost:3003/api/get_item_default_image/" + id_pon.toString()
+        "http://localhost:3003/api/get_item_default_image/" + id_pon.toString(),{withCredentials:true}
       );
 
       let bufferBase64 = "";

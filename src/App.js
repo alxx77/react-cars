@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const result = await axios("http://localhost:3003/api/get_all_items");
+      const result = await axios("http://localhost:3003/api/get_all_items",{withCredentials:true});
 
       store.dispatch(setData(result.data));
     })();

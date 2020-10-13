@@ -15,37 +15,54 @@ const port = 3003;
 
 initialize(passport, UserController.getUserByEmail, UserController.getUserById);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: `http://localhost:3000`,
+    credentials: true,
+    
+  })
+);
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: { secure: false },
   })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+/*function cLog(req,res,next){
+  console.log("sessid: " + req.session.id)
+  console.log("user: " + (req.user===undefined ? "" : req.user.username))
+  return next();
+}*/
+
+//app.use(cLog);
+
 app.get("/", (req, res) => {
-  //req.session.view_count+=1;
-  res.send("Hello");
-  //console.log(req.session.view_count)
+  res.send({success:true})
 });
 
 //podaci o ponudi
 app.get("/api/get_item_by_id/:id_pon", (req, res) => {
+
   ItemController.getItemById(req, res);
 });
 
 //lista svih aktivnih ponuda
 app.get("/api/get_all_items", (req, res) => {
+
+
   ItemController.getItems(req, res);
 });
 
 //naslovna slika ponude
 app.get("/api/get_item_default_image/:id_pon", (req, res) => {
+
   ItemController.getItemDefaultImage(req, res);
 });
 
@@ -61,6 +78,7 @@ app.get("/api/get_model_list_by_brand/:id_brand", (req, res) => {
 
 //slika
 app.get("/api/get_image_by_id/:image_id", (req, res) => {
+  
   ImageController.getImage(req, res);
 });
 
@@ -70,6 +88,15 @@ app.get("/api/get_items_images/:id_pon", (req, res) => {
 });
 
 app.post("/api/write_item/:id_pon", (req, res, next) => {
+
+  if (!req.user) {
+    res.send({
+      success: false,
+      error: "Not Authenticated",
+    });
+    return;
+  }
+
   const form = formidable({ multiples: true });
 
   form.parse(req, (err, fields, files) => {
@@ -82,26 +109,20 @@ app.post("/api/write_item/:id_pon", (req, res, next) => {
 });
 
 //signin
-app.post("/api/signin", passport.authenticate("local"),async (req, res) => {
+app.post("/api/signin", passport.authenticate("local"), (req, res) => {
   if (req.user) {
     res.send({
       success: true,
       username: req.user.username,
       user_type: req.user.user_type,
-      user_id:req.user.user_id
+      user_id: req.user.user_id,
     });
   } else {
     res.send({ success: false });
   }
 });
 
-/*function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
 
-  res.redirect("/api/signin");
-}*/
 
 app.listen(port, () => {
   console.log(`React - Cars App listening at http://localhost:${port}`);

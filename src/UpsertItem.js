@@ -52,7 +52,7 @@ function UpsertItem() {
   useEffect(() => {
     const fn = async () => {
       const brand_lista_rows = await axios(
-        "http://localhost:3003/api/get_brand_list"
+        "http://localhost:3003/api/get_brand_list",{withCredentials:true}
       );
 
       setBrand_lista(brand_lista_rows.data);
@@ -60,7 +60,7 @@ function UpsertItem() {
       //lista modela
       const model_lista_rows = await axios(
         "http://localhost:3003/api/get_model_list_by_brand/" +
-          brand_selection_value
+          brand_selection_value,{withCredentials:true}
       );
 
       setModel_lista(model_lista_rows.data);
@@ -75,7 +75,7 @@ function UpsertItem() {
     const fn = async () => {
       //podaci o ponudi
       const ponuda_data_rows = await axios(
-        "http://localhost:3003/api/get_item_by_id/" + id_pon
+        "http://localhost:3003/api/get_item_by_id/" + id_pon,{withCredentials:true}
       );
 
       const ponuda = ponuda_data_rows.data[0][0];
@@ -96,7 +96,7 @@ function UpsertItem() {
 
       //učitaj sve slike za ponudu
       const slike_data_rows = await axios(
-        "http://localhost:3003/api/get_items_images/" + id_pon
+        "http://localhost:3003/api/get_items_images/" + id_pon,{withCredentials:true}
       );
 
       let images = [];
@@ -128,7 +128,7 @@ function UpsertItem() {
 
     //lista modela
     const model_lista_rows = await axios(
-      "http://localhost:3003/api/get_model_list_by_brand/" + e.target.value
+      "http://localhost:3003/api/get_model_list_by_brand/" + e.target.value,{withCredentials:true}
     );
 
     setModel_lista(model_lista_rows.data);
@@ -288,17 +288,26 @@ function UpsertItem() {
 
     let url = "http://localhost:3003/api/write_item/" + id_pon;
 
-    await axios({
+    //const axios_instance = axios.create({
+      //withCredentials: true
+    //})
+
+    let response=await axios({
       method: "post",
       url,
+      withCredentials:true,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
-      processData: false,
-      contentType: false,
+
     });
+
+    if(!response.data.success){
+      alert(response.error);
+      history.push("/signin")
+    }
     
     //osveži store
-    store.dispatch(setData((await axios("http://localhost:3003/api/get_all_items")).data));
+    store.dispatch(setData((await axios("http://localhost:3003/api/get_all_items",{withCredentials:true})).data));
 
     history.push("/");
    

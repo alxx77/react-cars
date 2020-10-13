@@ -3,7 +3,6 @@ import * as Crypto from "crypto";
 import LocalStrategy from "passport-local";
 
 function initialize(passport, getUserByEmail, getUserById) {
-
   //autentifikacija korisnika
   const authenticateUser = async (email, password, done) => {
     //nađi korisnika po emailu
@@ -21,7 +20,7 @@ function initialize(passport, getUserByEmail, getUserById) {
       const hash = Crypto.createHash("md5");
 
       hash.update(password + user.pwdsalt);
-  
+
       const pwdhash = hash.digest("hex");
 
       //
@@ -43,7 +42,16 @@ function initialize(passport, getUserByEmail, getUserById) {
   passport.serializeUser((user, done) => done(null, user.user_id));
 
   //simbol->user
-  passport.deserializeUser(async (id, done) => done(null,await getUserById(id)));
+  passport.deserializeUser((user_id, done) =>
+    getUserById(user_id).then(
+      (user) => {
+        return done(null, user);
+      },
+      (err) => {
+        return done(err, null);
+      }
+    )
+  );
 }
 
 export default initialize;

@@ -16,9 +16,9 @@ function Login() {
 
   const signIn = async (e) => {
     e.preventDefault();
+    axios.defaults.withCredentials=true;
     let user = await axios.post(
-      `http://localhost:3003/api/signin/?email=${email}&password=${password}`
-    );
+      `http://localhost:3003/api/signin/?email=${email}&password=${password}`);
 
     user = user.data;
 
