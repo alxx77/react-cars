@@ -4,7 +4,7 @@
   margin-right: auto;
   margin-top: 1rem;
   max-width: 800px;
-  border: 5px solid lightgray;
+  border: 2px solid lightgray;
   border-radius: 1rem;
   font-family: Tahoma;
 }
@@ -19,14 +19,12 @@ h2 {
 
 .form_element {
   display: grid;
-  grid-template-columns: 200px 250px;
-  margin: 0rem 8rem;
-  align-items: center;
-  
+  grid-template-columns: repeat(5,1fr);
 
 }
 
 .label_form_element {
+  grid-column: 2 / 3;
   text-align: right;
   margin-right: 0.5rem;
   font-family: Tahoma;
@@ -34,6 +32,9 @@ h2 {
 }
 
 .form_images {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: auto;
   margin-top: 1rem;
 }
 
@@ -55,15 +56,25 @@ h2 {
   border-radius: 5px;
 }
 
-input, select,textarea {
+input, select{
+  grid-column: 3 / 4 ;
     margin: 4px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
     font-size: 0.8rem;
 
   }
+
+  textarea {
+    grid-column: 3 / 4 ;
+      margin: 4px 0;
+
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.8rem;
+  
+    }
 
   input[type="file"] {
     display: none;

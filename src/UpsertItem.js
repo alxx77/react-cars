@@ -386,7 +386,7 @@ function UpsertItem() {
           {/** godina proizv. */}
           <div className="form_element">
             <label className="label_form_element" htmlFor="god_proizv">
-              Godina proizvodnje:
+              God. proizvodnje:
             </label>
             <input
               type="text"
@@ -406,8 +406,8 @@ function UpsertItem() {
               id="opis"
               name="opis"
               value={input_opis}
-              rows="4"
-              cols="50"
+              rows="6"
+              cols="15"
               onChange={(e) => setInput_opis(e.target.value)}
             ></textarea>
           </div>

@@ -8,13 +8,11 @@ function UpsertFormItemPhoto({ image_data, uuid, removeItemPhoto }) {
 
   return (
     <div className="edit_item_card">
-      <div className="photo_container">
         <img
           className="photo"
           src={"data:image/jpg;base64," + image_data}
           alt=""
         />
-      </div>
       <div className="trash_link_container">
         <i className='trash_link far fa-trash-alt' onClick={removeSelf}></i>
       </div>

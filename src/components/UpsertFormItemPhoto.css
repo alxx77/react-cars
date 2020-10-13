@@ -1,23 +1,24 @@
 .edit_item_card {
-  display: grid;
-  grid-template-columns: 1.8fr 1fr;
-  grid-template-rows: auto;
+  grid-column: 2 / 3;
   margin: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+
 }
 
 .trash_link_container {
-  display: flex;
+  display: inline-flex;
+  grid-column: 7 / 8;
   margin-left: 0.5rem;
-  align-items: center;
+ justify-content: center;
+ align-items: center;
 }
 
 .photo {
-  display: block;
-  margin-left: auto;
+  grid-column: 2 / 7;
+  object-fit: contain;
   border-radius: 6px;
-  max-width: 60%;
-  min-width: 40%;
-  height: auto;
+  width: 100%;
 }
 
 .trash_link {

@@ -22,6 +22,7 @@
   width: 20%;
   cursor: pointer;
 }
+
 .active {
   color: white;
   background-color: navy;
@@ -32,7 +33,6 @@
 
 .insert_btn {
   font-size: 36px;
-
   margin: 0.8rem;
   margin-right: 6rem;
 }
@@ -68,11 +68,13 @@
   padding: 4px 20px;
   cursor: pointer;
   position: relative;
+  text-align: center;
 
 }
 
 .insert_button > i {
   color: white;
+  text-align: center;
 }
 
 
