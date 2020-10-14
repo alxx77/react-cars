@@ -55,8 +55,6 @@ app.get("/api/get_item_by_id/:id_pon", (req, res) => {
 
 //lista svih aktivnih ponuda
 app.get("/api/get_all_items", (req, res) => {
-
-
   ItemController.getItems(req, res);
 });
 
@@ -120,6 +118,11 @@ app.post("/api/signin", passport.authenticate("local"), (req, res) => {
   } else {
     res.send({ success: false });
   }
+});
+
+//register
+app.post("/api/register", (req, res) => {
+  UserController.registerUser(req,res);
 });
 
 

@@ -12,6 +12,16 @@ function Login() {
 
   const register = async (e) => {
     e.preventDefault();
+    axios.defaults.withCredentials=true;
+    let res = await axios.post(
+      `http://localhost:3003/api/register/?email=${email}&password=${password}`);
+    
+     if(res.data.success===false){
+       alert(res.data.error)
+     } else{
+       alert("User Registered...!")
+     }
+     
   };
 
   const signIn = async (e) => {
@@ -20,9 +30,7 @@ function Login() {
     let user = await axios.post(
       `http://localhost:3003/api/signin/?email=${email}&password=${password}`);
 
-    user = user.data;
-
-    store.dispatch(signInUser(user));
+    store.dispatch(signInUser(user.data));
     history.push("/");
   };
 
