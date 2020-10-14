@@ -20,12 +20,12 @@ function Header() {
   if (user.username != null) {
     user_navbar_element = (
       <div className="topnav_right">
-        <span>
-          <i className="fas fa-sign-out-alt"></i>
+
+          
           <button onClick={handleSignOut} className="button_link">
-            {user.username}
+          <i className="fas fa-sign-out-alt"></i> {user.username}
           </button>
-        </span>
+
       </div>
     );
   } else {
