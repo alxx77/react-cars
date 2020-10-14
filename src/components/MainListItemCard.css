@@ -41,7 +41,7 @@
 }
 
 .edit_btn {
-  display: grid;
+  
   grid-column: 3 / 4;
 
   margin: 0.8rem 1rem;

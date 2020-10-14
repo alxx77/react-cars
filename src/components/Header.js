@@ -2,13 +2,12 @@ import store from "./Store";
 import React, { useState } from "react";
 import "./Header.css";
 import { signOutUser } from "./actions";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Header() {
-  
-  const [user,setUser] = useState(store.getState().user);
+  const [user, setUser] = useState(store.getState().user);
 
-  const history=useHistory();
+  const history = useHistory();
 
   function handleSignOut() {
     store.dispatch(signOutUser());
@@ -20,19 +19,14 @@ function Header() {
 
   if (user.username != null) {
     user_navbar_element = (
-      <>
-        <div className="topnav_right">
-          <span>
-            <i className="far fa-user"></i>
-            <button className="button_link">{user.username}</button>
-          </span>
-        </div>
-        <div className="topnav_right">
+      <div className="topnav_right">
+        <span>
+          <i className="fas fa-sign-out-alt"></i>
           <button onClick={handleSignOut} className="button_link">
-            Sign Out
+            {user.username}
           </button>
-        </div>
-      </>
+        </span>
+      </div>
     );
   } else {
     user_navbar_element = (
