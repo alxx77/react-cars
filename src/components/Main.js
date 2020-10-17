@@ -13,8 +13,8 @@ function Main() {
     currentData: [],
   });
 
-  const [items, setItems] = useState(store.getState().data);
-  const [user, setUser] = useState(store.getState().user);
+  const [items, setItems] = useState(()=>store.getState().data);
+  const [user, setUser] = useState(()=>store.getState().user);
 
   //postavi update stanja sa stora
   useEffect(() => {

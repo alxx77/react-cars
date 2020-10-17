@@ -9,7 +9,7 @@ function MainListItemCard({ id_pon }) {
   const [ponuda_slika, setPonuda_slika] = useState(dummy_img);
   const [ponuda_data, setPonuda_data] = useState({});
 
-  const [user,setUser] = useState(store.getState().user);
+  const [user,setUser] = useState(()=>store.getState().user);
 
   //postavi update stanja sa stora
   useEffect(() => {

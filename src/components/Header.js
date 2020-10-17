@@ -5,7 +5,7 @@ import { signOutUser } from "./actions";
 import { useHistory } from "react-router-dom";
 
 function Header() {
-  const [user, setUser] = useState(store.getState().user);
+  const [user, setUser] = useState(()=>store.getState().user);
 
   const history = useHistory();
 
