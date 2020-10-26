@@ -6,15 +6,15 @@ import store from "./Store";
 import { Link } from "react-router-dom";
 
 function Main() {
-  const [state, setState] = useState({
+  const [pagination_data, setPagination_data] = useState({
     offset: 0,
     numberPerPage: 4,
     pageCount: 0,
     currentData: [],
   });
 
-  const [items, setItems] = useState(()=>store.getState().data);
-  const [user, setUser] = useState(()=>store.getState().user);
+  const [items, setItems] = useState(() => store.getState().data);
+  const [user, setUser] = useState(() => store.getState().user);
 
   //postavi update stanja sa stora
   useEffect(() => {
@@ -28,18 +28,18 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    setState((prev) => ({
-      ...prev,
-      pageCount: items.length / prev.numberPerPage,
-      currentData: items.slice(prev.offset, prev.offset + prev.numberPerPage),
+    setPagination_data((val) => ({
+      ...val,
+      pageCount: items.length / val.numberPerPage,
+      currentData: items.slice(val.offset, val.offset + val.numberPerPage),
     }));
-  }, [state.numberPerPage, state.offset, items]);
+  }, [pagination_data.numberPerPage, pagination_data.offset, items]);
 
   //handler promena stranice
   const handlePageClick = (event) => {
     const selected = event.selected;
-    const offset = selected * state.numberPerPage;
-    setState({ ...state, offset });
+    const offset = selected * pagination_data.numberPerPage;
+    setPagination_data({ ...pagination_data, offset });
   };
 
   //console.log("state: ",state,"items:",items)
@@ -50,7 +50,7 @@ function Main() {
         previousLabel={"previous"}
         nextLabel={"next"}
         breakLabel={"..."}
-        pageCount={state.pageCount}
+        pageCount={pagination_data.pageCount}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={handlePageClick}
@@ -62,9 +62,11 @@ function Main() {
         <div className="main_container_header">
           <div className="main_container_header_item">
             <div className="insert_link">
-            <Link to="/insert_item/-1">
-            <button className="insert_button"><i className="material-icons">add</i></button>
-            </Link>
+              <Link to="/insert_item/-1">
+                <button className="insert_button">
+                  <i className="material-icons">add</i>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -73,8 +75,8 @@ function Main() {
       )}
 
       <div className="main_container">
-        {state.currentData &&
-          state.currentData.map((item, index) => (
+        {pagination_data.currentData &&
+          pagination_data.currentData.map((item, index) => (
             <MainListItemCard
               key={item.id_pon}
               id_pon={item.id_pon}
